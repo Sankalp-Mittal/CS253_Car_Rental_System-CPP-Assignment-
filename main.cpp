@@ -12,7 +12,7 @@
 #include <stdlib.h>
 using namespace std;
 using std::cout;
-using std::cin;
+// using std::cin;
 
 vector<string> split(const string &s, char delimiter) {
     vector<string> tokens;
@@ -225,7 +225,7 @@ bool Car::rentRequest(string date, string person_id, int role){
     cout<<"Total cost for renting the car for "<<days<<" days is : "<<price<<endl;
     cout<<"Do you want to continue? (y/n) : ";
     string c;
-    cin>>c;
+    getline(cin,c);
     if(c=="n"){
         return false;
     }
@@ -351,7 +351,7 @@ void Manager::display_menu_manager(){
         cout<<"Press 3 to see all cars details"<<endl;
         cout<<"Press 4 modify car details"<<endl;
         cout<<"Press 5 to logout"<<endl;
-        cin>>c;
+        getline(cin,c);
         if(c=="1"){
             this->modifyPeople("customer");
         }
@@ -381,7 +381,7 @@ void Manager::show_all_cars(){
         cout<<"Press 2 to see rented cars"<<endl;
         cout<<"Press 3 to see unrented cars"<<endl;
         cout<<"Press 4 to exit"<<endl;
-        cin>>c;
+        getline(cin,c);
         if(c=="1"){
             if(isFileEmpty("all_cars.csv")){
                 cout<<"No cars are present in the shop"<<endl;
@@ -442,17 +442,17 @@ void Manager::modifyPeople(string role){
         cout<<"Press 2 to remove a "<<role<<endl;
         cout<<"Press 3 to update infomation of a "<<role<<endl;
         cout<<"Press 4 to exit"<<endl;
-        cin>>c;
+        getline(cin,c);
         string filename = role + "s.csv";
         string line;
         if(c=="1"){
             system("cls");
             cout<<"Enter ID of the new "<<role<<" : ";
             string id;
-            cin>>id;
+            getline(cin,id);
             cout<<"Enter name of the new "<<role<<" : ";
             string name;
-            cin>>name;
+            getline(cin,name);
             while(true){
                 cout<<"Maximum length of password is 31"<<endl;
                 cout<<"Enter password of the new "<<role<<" : ";
@@ -474,7 +474,7 @@ void Manager::modifyPeople(string role){
             system("cls");
             cout<<"Enter ID of the "<<role<<" to be removed : ";
             string id;
-            cin>>id;
+            getline(cin,id);
             pair<string, bool> result = searchIDInFile(filename, id);
             if(!result.second){
                 cout<<"Invalid ID"<<endl;
@@ -499,7 +499,7 @@ void Manager::modifyPeople(string role){
             system("cls");
             cout<<"Enter ID of the "<<role<<" to be updated : ";
             string id;
-            cin>>id;
+            getline(cin,id);
             pair<string, bool> result = searchIDInFile(filename, id);
             if(!result.second){
                 cout<<"Invalid ID"<<endl;
@@ -515,24 +515,24 @@ void Manager::modifyPeople(string role){
                         cout<<"Enter 1 to update name"<<endl;
                         cout<<"Enter 2 to update password"<<endl;
                         cout<<"Enter 3 to update score"<<endl;
-                        cin>>update;
+                        getline(cin,update);
                         if(update=='1'){
                             cout<<"Enter new name : ";
                             string name;
-                            cin>>name;
+                            getline(cin,name);
                             temp<<tokens[0]<<","<<name<<","<<tokens[2]<<","<<tokens[3]<<","<<tokens[4]<<","<<tokens[5]<<endl;
                         }
                         else if(update=='2'){
                             cout<<"Enter new password : ";
                             string password;
-                            cin>>password;
+                            getline(cin,password);
                             temp<<tokens[0]<<","<<tokens[1]<<","<<password<<","<<tokens[3]<<","<<tokens[4]<<","<<tokens[5]<<endl;
                         }
                         else if(update=='3'){
                             string score;
                             while(true){
                                 cout<<"Enter new score : ";
-                                cin>>score;
+                                getline(cin,score);
                                 try{
                                     int check_int = stoi(score);
                                     break;
@@ -577,23 +577,23 @@ void Manager::modifyCars(){
         cout<<"Press 2 to remove a car"<<endl;
         cout<<"Press 3 to update infomation of a car"<<endl;
         cout<<"Press 4 to exit"<<endl;
-        cin>>c;
+        getline(cin,c);
         string filename = "all_cars.csv";
         string line;
         if(c=="1"){
             cout<<"Enter UID of the new car : ";
             string uid;
-            cin>>uid;
+            getline(cin,uid);
             cout<<"Enter model of the new car : ";
             string model;
-            cin>>model;
+            getline(cin,model);
             cout<<"Enter condition of the new car : ";
             string condition;
-            cin>>condition;
+            getline(cin,condition);
             string cost;
             while(true){
                 cout<<"Enter cost per day of the new car : ";
-                cin>>cost;
+                getline(cin,cost);
                 try{
                     int check_int = stoi(cost);
                     break;
@@ -610,7 +610,7 @@ void Manager::modifyCars(){
         else if(c=="2"){
             cout<<"Enter UID of the car to be removed : ";
             string uid;
-            cin>>uid;
+            getline(cin,uid);
             pair<string, bool> result = searchIDInFile(filename, uid);
             if(!result.second){
                 cout<<"Invalid UID"<<endl;
@@ -632,7 +632,7 @@ void Manager::modifyCars(){
         else if(c=="3"){
             cout<<"Enter UID of the car to be updated : ";
             string uid;
-            cin>>uid;
+            getline(cin,uid);
             pair<string, bool> result = searchIDInFile(filename, uid);
             if(!result.second){
                 cout<<"Invalid UID"<<endl;
@@ -645,14 +645,14 @@ void Manager::modifyCars(){
                 if(tokens[0] == uid){
                     cout<<"Enter new model : ";
                     string model;
-                    cin>>model;
+                    getline(cin,model);
                     cout<<"Enter new condition : ";
                     string condition;
-                    cin>>condition;
+                    getline(cin,condition);
                     string cost;
                     while(true){
                         cout<<"Enter new cost per day : ";
-                        cin>>cost;
+                        getline(cin,cost);
                         try{
                             int check_int = stoi(cost);
                             break;
@@ -695,7 +695,7 @@ void People::display_menu_detailed(){
         cout<<"Press 4 to pay fine"<<endl;
         cout<<"Press 5 to change password"<<endl;
         cout<<"Press 6 to logout"<<endl;
-        cin>>c;
+        getline(cin,c);
         if(c=="0"){
             this->showCars();
         }
@@ -764,7 +764,7 @@ void People::pay_fine(){
             int amount;
             while(true){
                 cout<<"Enter the amount you want to pay : ";
-                cin>>amount_str;
+                getline(cin,amount_str);
                 try{
                     amount = stoi(amount_str);
                     break;
@@ -849,7 +849,7 @@ void People::rent_car(){
         string uid;
         cout<<"Enter 1 to go back to main menu"<<endl;
         cout<<"Enter the UID of the car you want to rent : ";
-        cin>>uid;
+        getline(cin,uid);
         if(uid == "1"){
             return;
         }
@@ -867,7 +867,7 @@ void People::rent_car(){
                 else{
                     cout<<"Enter date till required (dd.mm.yyyy): ";
                     string date;
-                    cin>>date;
+                    getline(cin,date);
                     if(!isDateValid(date)){
                         cout<<"Invalid date format"<<endl;
                         break;
@@ -899,7 +899,7 @@ void People::return_car(){
         cout<<"Enter -1 to go back to main menu"<<endl;
         cout<<"Enter UID of the car you want to return : ";
         string uid;
-        cin>>uid;
+        getline(cin,uid);
         if(uid == "-1"){
             return;
         }
@@ -1098,7 +1098,7 @@ void login(){
         system("cls");
         cout<<"Enter 0 to go back to main menu"<<endl;
         cout<< "Login as Employee/Customer/Manager?(e/c/m)  ";
-        cin>>role;
+        getline(cin,role);
 
         string filename;
         if(role=="c"){
@@ -1118,7 +1118,7 @@ void login(){
             continue;
         }
         cout << "Enter your id: ";
-        cin >> id;
+        getline(cin,id);
         cout<<endl;
         pair<string, bool> result = searchIDInFile(filename, id);
         if (result.second) {
@@ -1158,11 +1158,11 @@ void register_user(){
     while(true){
         string id, name, password;
         cout << "Whats your name: ";
-        cin>>name;
+        getline(cin,name);
         cout<<endl;
         bool unique_id = false;
         cout << "Enter your id: ";
-        cin >> id;
+        getline(cin,id);
         pair<string, bool> result = searchIDInFile("customers.csv", id);
         if (result.second) {
             cout << "ID already exists" << endl;
@@ -1203,7 +1203,7 @@ void display_menu(){
         cout<<"Press 2 to register"<<endl;
         cout<<"Press 3 to exit"<<endl;
         cout<<"---------------------------------------------------------------------\n";
-        cin>>c;
+        getline(cin,c);
         if(c=="1"){
             login();
         }
