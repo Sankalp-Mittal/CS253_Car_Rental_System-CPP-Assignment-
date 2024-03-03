@@ -488,6 +488,12 @@ void Manager::modifyPeople(string role){
                     if(tokens[0] != id){
                         temp<<line<<endl;
                     }
+                    else{
+                        if(tokens[3] == "1"){
+                            cout<<"Cannot remove "<<role<<" with rented cars"<<endl;
+                            temp<<line<<endl;
+                        }
+                    }
                 }
                 file.close();
                 temp.close();
@@ -511,24 +517,24 @@ void Manager::modifyPeople(string role){
                 while(getline(file, line)){
                     vector<string> tokens = split(line, ',');
                     if(tokens[0] == id){
-                        char update;
+                        string update;
                         cout<<"Enter 1 to update name"<<endl;
                         cout<<"Enter 2 to update password"<<endl;
                         cout<<"Enter 3 to update score"<<endl;
                         getline(cin,update);
-                        if(update=='1'){
+                        if(update=="1"){
                             cout<<"Enter new name : ";
                             string name;
                             getline(cin,name);
                             temp<<tokens[0]<<","<<name<<","<<tokens[2]<<","<<tokens[3]<<","<<tokens[4]<<","<<tokens[5]<<endl;
                         }
-                        else if(update=='2'){
+                        else if(update=="2"){
                             cout<<"Enter new password : ";
                             string password;
                             getline(cin,password);
                             temp<<tokens[0]<<","<<tokens[1]<<","<<password<<","<<tokens[3]<<","<<tokens[4]<<","<<tokens[5]<<endl;
                         }
-                        else if(update=='3'){
+                        else if(update=="3"){
                             string score;
                             while(true){
                                 cout<<"Enter new score : ";
